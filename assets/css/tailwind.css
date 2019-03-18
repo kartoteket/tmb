@@ -61,7 +61,7 @@
  * @import "utilities/skew-transforms";
  */
 
-.faux-border {
+ .faux-border {
   box-shadow:
     1px 0 0 0 #b8c2cc,
     0 1px 0 0 #b8c2cc,
@@ -70,8 +70,8 @@
     0 1px 0 0 #b8c2cc inset;
 }
 
-
-.crosshairs:hover {
+.crosshairs:hover,
+.crosshairs a:hover {
   cursor: crosshair;
   cursor: url(~assets/images/crosshairs.png) 36 36,crosshair;
 }
@@ -80,3 +80,7 @@
  .outline {
    outline: 1px solid red;
  }
+
+.transition-opacity {
+  transition: opacity .5s;
+}

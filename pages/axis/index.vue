@@ -1,31 +1,42 @@
 <template>
   <section>
-    <tots :tots="tots" />
+    <Menu text-color="black" :link-home="true" />
+    <div class="tots">
+      <tot v-for="axis in correspondences" :key="axis.id" :tot="axis"></tot>
+    </div>
   </section>
 </template>
 
 <script>
-import Tots from '~/components/Tots.vue'
-import Papa from 'papaparse'
-// const SHEET_ID = '1WWKpGoYt4qyFpWnWq02D_N82NTVOgFeUJ1dzRekKwqg'
-// const URL = `https://spreadsheets.google.com/feeds/list/${SHEET_ID}/1/public/values?alt=json`
-const URL =
-  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTs9xaw1tFZI0cSEfZXJehljJz20P2G2NUca6KxOqo9u2i0cd0oJCJF_eaZrCtZZ2oVBm22NxnWJf_L/pub?output=csv'
+import Tot from '~/components/Tot.vue'
+import Menu from '~/components/Menu.vue'
+// import Tots from '~/components/Tots.vue'
+// import Papa from 'papaparse'
+// const URL =
+//   'https://docs.google.com/spreadsheets/d/e/2PACX-1vTs9xaw1tFZI0cSEfZXJehljJz20P2G2NUca6KxOqo9u2i0cd0oJCJF_eaZrCtZZ2oVBm22NxnWJf_L/pub?output=csv'
 
 export default {
   components: {
-    Tots
+    Menu,
+    Tot
+    // Tots
   },
-  async asyncData({ $axios }) {
-    const csv = await $axios.$get(URL)
-    const correspondences = Papa.parse(csv, {
-      header: true,
-      dynamicTyping: true
-    })
-    // console.log(correspondences.meta)
-    console.log(correspondences.data)
-    return { tots: correspondences.data }
+  computed: {
+    // Get all correspondences from store
+    correspondences() {
+      return this.$store.state.correspondences
+    }
   }
+  // async asyncData({ $axios }) {
+  //   const csv = await $axios.$get(URL)
+  //   const correspondences = Papa.parse(csv, {
+  //     header: true,
+  //     dynamicTyping: true
+  //   })
+  //   // console.log(correspondences.meta)
+  //   console.log(correspondences.data)
+  //   return { tots: correspondences.data }
+  // }
 }
 </script>
 

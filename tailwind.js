@@ -45,6 +45,8 @@ View the full documentation at https://tailwindcss.com.
 const colors = {
   transparent: 'transparent',
 
+  earth: '#B2ADA1', // '#cec8c2',
+
   black: '#22292f',
   'grey-darkest': '#3d4852',
   'grey-darker': '#606f7b',
@@ -217,6 +219,7 @@ module.exports = {
       'serif'
     ],
     mono: [
+      'IBM Plex Mono',
       'Menlo',
       'Monaco',
       'Consolas',
@@ -881,7 +884,7 @@ Ideal Tracking
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
-    opacity: ['responsive'],
+    opacity: ['responsive', 'hover'],
     outline: ['focus'],
     overflow: ['responsive'],
     padding: ['responsive'],

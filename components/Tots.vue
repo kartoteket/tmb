@@ -6,24 +6,12 @@
 <script>
 import Tot from '~/components/Tot.vue'
 
-// const dummyTots = Array.from({ length: 256 }, (v, i) => i)
-
 export default {
   components: {
     Tot
   },
-  // props: {
-  //   tots: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
-  // data() {
-  //   return {
-  //     dummyTots: dummyTots
-  //   }
-  // },
   computed: {
+    // Get all correspondences from store
     correspondences() {
       return this.$store.state.correspondences
     }
