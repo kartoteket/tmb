@@ -60,3 +60,23 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+.faux-border {
+  box-shadow:
+    1px 0 0 0 #b8c2cc,
+    0 1px 0 0 #b8c2cc,
+    1px 1px 0 0 #b8c2cc,   /* Just to fix the corner */
+    1px 0 0 0 #b8c2cc inset,
+    0 1px 0 0 #b8c2cc inset;
+}
+
+
+.crosshairs:hover {
+  cursor: crosshair;
+  cursor: url(~assets/images/crosshairs.png) 36 36,crosshair;
+}
+
+
+ .outline {
+   outline: 1px solid red;
+ }

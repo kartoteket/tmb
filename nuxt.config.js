@@ -24,7 +24,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/assets/css/tailwind.css'],
+  css: ['~/assets/css/font.css', '~/assets/css/tailwind.css'],
 
   /*
    ** Plugins to load before mounting the App
@@ -44,6 +44,10 @@ export default {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  router: {
+    middleware: 'api-data'
   },
 
   /*
