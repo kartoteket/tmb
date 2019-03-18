@@ -1,4 +1,5 @@
 import pkg from './package'
+import routes from './routes'
 
 export default {
   mode: 'universal',
@@ -43,7 +44,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    ['nuxt-purgecss', { mode: 'postcss' }]
   ],
   /*
    ** Axios module configuration
@@ -52,14 +54,54 @@ export default {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  purgeCSS: {
+    whitelist: ['text-black', 'text-white'],
+    enabled: true,
+    mode: 'postcss'
+    // extractors: [
+    //   {
+    //     extractor: class {
+    //       static extract(content) {
+    //         // return content.match(/[A-Za-z0-9-_:\\/]+/g) || []
+    //         return content.match(/[A-z   0-9-_:\\/]+/g)
+    //       }
+    //     },
+    //     extensions: ['html', 'js', 'vue']
+    //   }
+    // ]
+  },
+
   router: {
     middleware: 'api-data'
   },
 
-  /*
-   ** Build configuration
-   */
+  generate: {
+    routes: routes
+    // postcss: {
+    //   plugins: {
+    //     tailwindcss: './tailwind.js'
+    //   },
+    //   preset: {
+    //     // Change the postcss-preset-env settings
+    //     // autoprefixer: {
+    //     //   grid: true
+    //     // }
+    //   }
+    // }
+  },
+
   build: {
+    postcss: {
+      plugins: {
+        tailwindcss: './tailwind.js'
+      },
+      preset: {
+        // Change the postcss-preset-env settings
+        // autoprefixer: {
+        //   grid: true
+        // }
+      }
+    },
     /*
      ** You can extend webpack config here
      */
