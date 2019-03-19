@@ -26,6 +26,9 @@ export default {
     correspondences() {
       return this.$store.state.correspondences
     }
+  },
+  async fetch({ store, params }) {
+    await store.dispatch('fetchCorrespondences')
   }
   // async asyncData({ $axios }) {
   //   const csv = await $axios.$get(URL)

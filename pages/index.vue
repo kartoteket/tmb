@@ -5,7 +5,6 @@
         O
       </nuxt-link>
     </div>
-
     <Menu />
   </div>
 </template>

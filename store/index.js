@@ -1,24 +1,67 @@
+import axios from 'axios'
+import Papa from 'papaparse'
+const URL =
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTs9xaw1tFZI0cSEfZXJehljJz20P2G2NUca6KxOqo9u2i0cd0oJCJF_eaZrCtZZ2oVBm22NxnWJf_L/pub?output=csv'
+
 export const state = () => ({
-  correspondences: []
+  correspondences: [],
+  currentCorrespondences: {}
 })
 
 export const mutations = {
   setCorrespondences(state, obj) {
     state.correspondences = obj
+  },
+  setCurrentCorrespondences(state, obj) {
+    state.currentCorrespondences = obj
+  }
+}
+
+export const actions = {
+  async fetchCorrespondences({ commit, state }) {
+    if (state.correspondences.length === 0) {
+      try {
+        console.log('Hitting the API')
+        const { data } = await axios.get(URL)
+        const correspondences = await Papa.parse(data, {
+          header: true,
+          dynamicTyping: true
+        })
+        // console.log('api shit worked, committing to store')
+        commit('setCorrespondences', correspondences.data)
+        return correspondences.data
+      } catch (error) {
+        console.log('error', error)
+        // appropriately handle the error. Check nuxt on error-handling
+      }
+    }
+  },
+  async fetchCorrespondenceById({ commit, state, getters, dispatch }, id) {
+    const index = id - 1
+    try {
+      if (state.correspondences.length === 0) {
+        await dispatch('fetchCorrespondences')
+      }
+      const result = {
+        prev: getters.getPrev(id),
+        current: state.correspondences[index],
+        next: getters.getNext(id)
+      }
+      commit('setCurrentCorrespondences', result)
+    } catch (error) {
+      console.log('error', error)
+      // appropriately handle the error. Check nuxt on error-handling
+    }
   }
 }
 
 export const getters = {
-  getCorrespondences(state) {
-    return state.correspondences
-  },
-
-  getCorrespondence(state) {
-    return id =>
-      state.correspondences.find(item => {
-        return item.id === Number(id)
-      })
-  },
+  // getCorrespondence(state) {
+  //   return id =>
+  //     state.correspondences.find(item => {
+  //       return item.id === Number(id)
+  //     })
+  // },
 
   getNext(state) {
     return id => {
