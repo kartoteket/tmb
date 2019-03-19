@@ -55,7 +55,14 @@ export default {
   },
 
   purgeCSS: {
-    whitelist: ['text-black', 'text-white'],
+    whitelist: [
+      'text-black',
+      'text-white',
+      'page-enter',
+      'page-leave-to',
+      'page-enter-active',
+      'page-leave-active'
+    ],
     enabled: true,
     mode: 'postcss'
     // extractors: [
@@ -71,9 +78,9 @@ export default {
     // ]
   },
 
-  router: {
-    middleware: 'api-data'
-  },
+  // router: {
+  //   middleware: 'api-data'
+  // },
 
   generate: {
     routes: routes
