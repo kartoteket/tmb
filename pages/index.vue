@@ -1,11 +1,17 @@
 <template>
-  <div class="bg-earth min-h-screen flex flex-col items-center justify-center">
-    <div class="mb-12">
-      <nuxt-link to="/axis" class="circle">
-        O
-      </nuxt-link>
-    </div>
-    <Menu />
+  <div class="cover">
+    <video
+      autoplay="autoplay"
+      preload="auto"
+      playsinline
+      muted="muted"
+      loop="loop"
+      poster
+      class=""
+    >
+      <source :src="videoURL" type="video/mp4" />
+    </video>
+    <Menu class="bottom" />
   </div>
 </template>
 
@@ -14,11 +20,39 @@ import Menu from '~/components/Menu.vue'
 export default {
   components: {
     Menu
+  },
+  data() {
+    return {
+      videos: [
+        'Axis-111-_3_Splurge-Qoma-Aleph-2_444.mp4',
+        'Axis-111 _2_Splurge-Qoma-Aleph-2_444.mp4',
+        'Qoma-Aleph_W2_onsdag_sett6.mp4'
+      ]
+    }
+  },
+  computed: {
+    videoURL() {
+      const i = Math.floor(Math.random() * 3)
+      return `video/${this.videos[i]}`
+    }
   }
 }
 </script>
 
 <style>
+.cover > video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  overflow: hidden;
+}
+/* 
 @keyframes pulse {
   0% {
     transform: scale(0.9);
@@ -46,13 +80,12 @@ export default {
   opacity: 0.5;
   z-index: 2;
   animation: pulse 7s infinite ease-in-out;
-  /* transition: opacity 500ms; */
-}
+} */
 
 /* .circle:hover {
   opacity: 1;
 } */
-
+/* 
 .circle::before {
   content: '<';
   display: block;
@@ -76,5 +109,5 @@ export default {
   left: 4rem;
   line-height: 1;
   @apply text-black;
-}
+} */
 </style>
