@@ -9,7 +9,7 @@
       poster
       class=""
     >
-      <source :src="videoURL" type="video/mp4" />
+      <source :src="getRandomVideo()" type="video/mp4" />
     </video>
     <Menu class="bottom" />
   </div>
@@ -32,6 +32,12 @@ export default {
   },
   computed: {
     videoURL() {
+      const i = Math.floor(Math.random() * 3)
+      return `video/${this.videos[i]}`
+    }
+  },
+  methods: {
+    getRandomVideo() {
       const i = Math.floor(Math.random() * 3)
       return `video/${this.videos[i]}`
     }
