@@ -39,6 +39,7 @@ export default {
   methods: {
     getRandomVideo() {
       const i = Math.floor(Math.random() * 3)
+      console.info('i', i)
       return `video/${this.videos[i]}`
     }
   }
