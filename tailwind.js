@@ -45,6 +45,8 @@ View the full documentation at https://tailwindcss.com.
 const colors = {
   transparent: 'transparent',
 
+  earth: '#B2ADA1', // '#cec8c2',
+
   black: '#22292f',
   'grey-darkest': '#3d4852',
   'grey-darker': '#606f7b',
@@ -190,6 +192,7 @@ module.exports = {
 
   fonts: {
     sans: [
+      'inter',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -216,6 +219,7 @@ module.exports = {
       'serif'
     ],
     mono: [
+      'IBM Plex Mono',
       'Menlo',
       'Monaco',
       'Consolas',
@@ -297,7 +301,7 @@ module.exports = {
   leading: {
     none: 1,
     tight: 1.25,
-    normal: 1.5,
+    normal: 1.4,
     loose: 2
   },
 
@@ -318,6 +322,29 @@ module.exports = {
     normal: '0',
     wide: '0.05em'
   },
+
+  /*
+https://rsms.me/inter/dynmetrics/
+Ideal Tracking
+6	0.043
+7	0.032
+8	0.024
+9	0.016
+10	0.01
+11	0.005
+12	0
+13	-0.0025
+14	-0.006
+15	-0.009
+16	-0.011
+17	-0.013
+18	-0.014
+20	-0.017
+24	-0.019
+30	-0.021
+40	-0.022
+80	-0.022
+*/
 
   /*
   |-----------------------------------------------------------------------------
@@ -857,7 +884,7 @@ module.exports = {
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
-    opacity: ['responsive'],
+    opacity: ['responsive', 'hover'],
     outline: ['focus'],
     overflow: ['responsive'],
     padding: ['responsive'],

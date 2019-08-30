@@ -1,72 +1,119 @@
 <template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        tmb
-      </h1>
-      <h2 class="subtitle">
-        The Molecular Ballet
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green"
-          >Documentation</a
-        >
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-          >GitHub</a
-        >
-      </div>
-    </div>
-  </section>
+  <div class="cover">
+    <video
+      autoplay="autoplay"
+      preload="auto"
+      playsinline
+      muted="muted"
+      loop="loop"
+      poster
+      class=""
+    >
+      <source :src="getRandomVideo()" type="video/mp4" />
+    </video>
+    <Menu class="bottom" />
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import Menu from '~/components/Menu.vue'
 export default {
   components: {
-    Logo
+    Menu
+  },
+  data() {
+    return {
+      videos: [
+        'Axis-111-_3_Splurge-Qoma-Aleph-2_444.mp4',
+        'Axis-111 _2_Splurge-Qoma-Aleph-2_444.mp4',
+        'Qoma-Aleph_W2_onsdag_sett6.mp4'
+      ]
+    }
+  },
+  computed: {
+    videoURL() {
+      const i = Math.floor(Math.random() * 3)
+      return `video/${this.videos[i]}`
+    }
+  },
+  methods: {
+    getRandomVideo() {
+      const i = Math.floor(Math.random() * 3)
+      return `video/${this.videos[i]}`
+    }
   }
 }
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
+.cover > video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  overflow: hidden;
 }
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+/* 
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+.circle {
+  position: relative;
   display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  width: 200px;
+  height: 215px;
+  border-color: #fff;
+  border-width: 13px;
+  border-radius: 100%;
+  @apply text-earth;
+  opacity: 0.5;
+  z-index: 2;
+  animation: pulse 7s infinite ease-in-out;
+} */
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+/* .circle:hover {
+  opacity: 1;
+} */
+/* 
+.circle::before {
+  content: '<';
+  display: block;
+  z-index: -1;
+  font-weight: 100;
+  font-size: 25rem;
+  position: absolute;
+  top: -8.5rem;
+  left: -8rem;
+  line-height: 1;
+  @apply text-red-darker;
 }
-
-.links {
-  padding-top: 15px;
-}
+.circle::after {
+  content: '>';
+  display: block;
+  z-index: -1;
+  font-weight: 100;
+  font-size: 25rem;
+  position: absolute;
+  top: -8.5rem;
+  left: 4rem;
+  line-height: 1;
+  @apply text-black;
+} */
 </style>
