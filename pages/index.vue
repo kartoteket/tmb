@@ -1,5 +1,5 @@
 <template>
-  <div class="cover">
+  <div class="cover" @click="getRandomVideo">
     <video
       autoplay="autoplay"
       preload="auto"
@@ -8,9 +8,9 @@
       loop="loop"
       poster
       class=""
-    >
-      <source :src="getRandomVideo()" type="video/mp4" />
-    </video>
+      :src="videoURL"
+      type="video/mp4"
+    ></video>
     <Menu class="bottom" />
   </div>
 </template>
@@ -23,6 +23,7 @@ export default {
   },
   data() {
     return {
+      videoIndex: Math.floor(Math.random() * 3),
       videos: [
         'Axis-111-_3_Splurge-Qoma-Aleph-2_444.mp4',
         'Axis-111 _2_Splurge-Qoma-Aleph-2_444.mp4',
@@ -32,15 +33,15 @@ export default {
   },
   computed: {
     videoURL() {
-      const i = Math.floor(Math.random() * 3)
-      return `video/${this.videos[i]}`
+      return `video/${this.videos[this.videoIndex]}`
     }
   },
   methods: {
     getRandomVideo() {
-      const i = Math.floor(Math.random() * 3)
-      console.info('i', i)
-      return `video/${this.videos[i]}`
+      this.videoIndex = this.videoIndex + 1
+      if (this.videoIndex >= 3) {
+        this.videoIndex = 0
+      }
     }
   }
 }
